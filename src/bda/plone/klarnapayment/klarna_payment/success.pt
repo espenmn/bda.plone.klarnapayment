@@ -22,7 +22,7 @@
       <tal:verified condition="verified">
       
         <h1 class="documentFirstHeading"
-            i18n:translate="payment_success">Payment Success</h1>
+            i18n:translate="klarna_payment_success">Payment Success</h1>
     
         <p i18n:translate="klarna_payment_success_text">
           Your Order has been completed successful.
@@ -33,7 +33,7 @@
       <tal:verification_failed condition="not:verified">
       
         <h1 class="documentFirstHeading"
-            i18n:translate="payment_error">Payment Error</h1>
+            i18n:translate="klarna_payment_error">Payment Error</h1>
         
         <p>
           <span i18n:translate="klarna_payment_verification_failed">

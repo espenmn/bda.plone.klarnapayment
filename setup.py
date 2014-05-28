@@ -7,7 +7,7 @@ version = '0.1'
 shortdesc = "Klarna Payment for bda.plone.shop"
 
 setup(
-    name='bda.plone.payment',
+    name='bda.plone.klarnapayment',
     version=version,
     description=shortdesc,
     classifiers=[

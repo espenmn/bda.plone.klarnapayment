@@ -1,12 +1,12 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:browser="http://namespaces.zope.org/browser">
 
-  <adapter name="klarna_payment" factory=".KlarnaPayment" />
+  <adapter name="klarna_payment" factory=".Klarna" />
   
   <browser:page
     for="*"
     name="klarna_payment"
-    class=".KlarnaPay"
+    class=".Klarna"
     permission="zope2.View"
   />
   

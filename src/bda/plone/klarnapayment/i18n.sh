@@ -13,7 +13,7 @@
 
 # Assume the product name is the current folder name
 CURRENT_PATH=`pwd`
-CATALOGNAME="bda.plone.payment"
+CATALOGNAME="bda.plone.klarnapayment"
 
 # List of languages
 LANGUAGES="en de fr it no"

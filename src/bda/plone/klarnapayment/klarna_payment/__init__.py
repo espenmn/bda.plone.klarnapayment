@@ -9,7 +9,7 @@ from bda.plone.payment import (
                                Payments,
                                )
 
-from ..six_payment import ISixPaymentData
+from bda.plone.payment.interfaces import IPaymentData
 
 from bda.plone.shop.interfaces import IShopSettings
 from zope.component import getUtility
@@ -17,7 +17,7 @@ from plone.registry.interfaces import IRegistry
 
 #from ZTUtils import make_query
 
-_ = MessageFactory('bda.plone.payment')
+_ = MessageFactory('bda.plone.klarnapayment')
 logger = logging.getLogger('bda.plone.payment')
 
 CREATE_PAY_INIT_URL = "https://checkout.testdrive.klarna.com/checkout/orders"
@@ -43,7 +43,7 @@ class DoKlarna(BrowserView):
         
         klarna_url = CREATE_PAY_INIT_URL
         
-        data = ISixPaymentData(self.context).data(order_uid)
+        data = IPaymentData(self.context).data(order_uid)
         
         amount = data['amount']
         currency = data['currency']
