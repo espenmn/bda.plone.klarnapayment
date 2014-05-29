@@ -6,7 +6,7 @@
   <browser:page
     for="*"
     name="klarna_payment"
-    class=".Klarna"
+    class=".KlarnaPay"
     permission="zope2.View"
   />
   

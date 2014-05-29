@@ -30,35 +30,57 @@ class Klarna(Payment):
     label = _('klarna', 'Klarna')
     
     def init_url(self, uid):
+        return '%s/@@klarna_payment?uid=%s' % (self.context.absolute_url(), uid)
+
+
+class KlarnaPay(BrowserView):
+    """
+    Assembles an url to dibs.
+    Need to check how to use (in lin 109)
+    make_query() 
+    """
+
+    def __call__(self, **kw):
+        uid = self.request['uid']
+        base_url = self.context.absolute_url()
         registry = getUtility(IRegistry)
         settings = registry.forInterface(IKlarnaPaymentSettings)
-        import pdb; pdb.set_trace()
         
-        data = IPaymentData(self.context).data(uid)
+        pdata = IPaymentData(self.context).data(uid)
         
-        amount = data['amount']
-        currency = data['currency']
-        description = data['description']
-        ordernumber = data['ordernumber']
+        amount = pdata['amount']
+        currency = pdata['currency']
+        description = pdata['description']
+        ordernumber = pdata['ordernumber']
         
         
         
         # Dictionary containing the cart items
         cart = (
-                {
-                'quantity': 1,
-                'reference': '123456789',
-                'name': 'Klarna t-shirt',
-                'unit_price': amount,
-                'tax_rate': 2500
-                },
-                )
+        {
+        'quantity': 1,
+        'reference': '123456789',
+        'name': 'Klarna t-shirt',
+        'unit_price': 12300,
+        'discount_rate': 1000,
+        'tax_rate': 2500
+        }, {
+        'quantity': 1,
+        'type': 'shipping_fee',
+        'reference': 'SHIPPING',
+        'name': 'Shipping Fee',
+        'unit_price': 4900,
+        'tax_rate': 2500
+        }
+        )
                 
         # Merchant ID
-        eid = settings.klarna_eid
+        eid = '2290'
+        settings.klarna_eid
         
         # Shared Secret
-        shared_secret = settings.klarna_secret
+        shared_secret = 'qzjaNjloMvifB6z'
+        #settings.klarna_secret
         
         
         klarnacheckout.Order.base_uri = \
@@ -68,7 +90,7 @@ class Klarna(Payment):
         
         connector = klarnacheckout.create_connector(shared_secret)
         
-        order = ordernumber
+        order = None
         
         merchant = {
             'id': eid,
@@ -82,12 +104,15 @@ class Klarna(Payment):
         #             '?sid=123&klarna_order={checkout.order.uri}')
         }
         
+        import pdb; pdb.set_trace()
+        
         data = {
-            'purchase_country': 'NO',
-            'purchase_currency': 'NOK',
-            'locale': 'nb-no',
-            'merchant': merchant
+                'purchase_country': 'SE',
+                'purchase_currency': 'SEK',
+                'locale': 'sv-se',
+        'merchant': merchant
         }
+        
         data["cart"] = {"items": []}
         
         for item in cart:

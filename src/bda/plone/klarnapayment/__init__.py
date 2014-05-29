@@ -20,10 +20,10 @@ class IKlarnaPaymentSettings(model.Schema):
         ],
     )
                    
-    klarna_eid = schema.TextLine(title=_(u'eid', default=u'Eid'),
+    klarna_eid = schema.ASCIILine(title=_(u'eid', default=u'Eid'),
                  required=True
     )
 
-    klarna_secret = schema.TextLine(title=_(u'secret', default=u'Shared Secret'),
+    klarna_secret = schema.ASCIILine(title=_(u'secret', default=u'Shared Secret'),
                required=True
     )

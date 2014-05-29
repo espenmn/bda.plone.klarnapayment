@@ -2,87 +2,85 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2014-05-29 14:56+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-05-29 19:56+0100\n"
+"Last-Translator: Espen Moe-Nilssen <espen@medialog.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #. Default: "Klarna"
-#: ./__init__.py:14
+#: __init__.py:14
 msgid "Klarna"
 msgstr ""
 
 #. Default: "Eid"
-#: ./__init__.py:21
+#: __init__.py:21
 msgid "eid"
-msgstr ""
+msgstr "Klarna EID"
 
 #. Default: "Klarna"
-#: ./klarna_payment/__init__.py:27
+#: klarna_payment/__init__.py:27
 msgid "klarna"
-msgstr ""
+msgstr "Klarna"
 
 #. Default: "Payment has been aborted."
-#: ./klarna_payment/aborted.pt:25
+#: klarna_payment/aborted.pt:25
 msgid "klarna_payment_aborted_text"
 msgstr ""
 
 #. Default: "Payment Error"
-#: ./klarna_payment/success.pt:35
+#: klarna_payment/success.pt:35
 msgid "klarna_payment_error"
-msgstr ""
+msgstr "En feil har oppstått"
 
 #. Default: "Sorry. Failed to complete your order. If you think the failure remains on our side, please contact"
-#: ./klarna_payment/failed.pt:26
+#: klarna_payment/failed.pt:26
 msgid "klarna_payment_failed_text"
 msgstr ""
 
 #. Default: "Payment Success"
-#: ./klarna_payment/success.pt:24
+#: klarna_payment/success.pt:24
 msgid "klarna_payment_success"
 msgstr ""
 
 #. Default: "Your Order has been completed successful."
-#: ./klarna_payment/success.pt:27
+#: klarna_payment/success.pt:27
 msgid "klarna_payment_success_text"
 msgstr ""
 
 #. Default: "Something nasty is going on. Payment verification failed. If you think the failure remains on our side, please contact"
-#: ./klarna_payment/success.pt:39
+#: klarna_payment/success.pt:39
 msgid "klarna_payment_verification_failed"
 msgstr ""
 
 #. Default: "Payment Aborted"
-#: ./klarna_payment/aborted.pt:22
+#: klarna_payment/aborted.pt:22
 msgid "payment_aborted"
-msgstr ""
+msgstr "Betalingen ble avbrutt"
 
 #. Default: "continue"
-#: ./klarna_payment/aborted.pt:29
-#: ./klarna_payment/failed.pt:35
-#: ./klarna_payment/success.pt:52
+#: klarna_payment/aborted.pt:29 klarna_payment/failed.pt:35
+#: klarna_payment/success.pt:52
 msgid "payment_done"
-msgstr ""
+msgstr "Betaling utført"
 
 #. Default: "Payment Failed"
-#: ./klarna_payment/failed.pt:22
+#: klarna_payment/failed.pt:22
 msgid "payment_failed"
-msgstr ""
+msgstr "Betaling mislyktes"
 
 #. Default: "Shared Secret"
-#: ./__init__.py:25
+#: __init__.py:25
 msgid "secret"
 msgstr ""
 
-#: ./klarna_payment/failed.pt:30
-#: ./klarna_payment/success.pt:43
+#: klarna_payment/failed.pt:30 klarna_payment/success.pt:43
 msgid "us"
 msgstr ""
-
