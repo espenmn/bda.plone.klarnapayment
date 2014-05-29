@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<registry>
+
+  <records interface="bda.plone.klarnapayment.IKlarnaPaymentSettings">
+    <value key="klarna_eid" purge="false">2290</value>
+    <value key="klarna_secret" purge="false">qzjaNjloMvifB6z</value>
+  </records>
+
+</registry>
