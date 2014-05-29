@@ -29,6 +29,7 @@ setup(
         'setuptools',
         'Plone',
         'bda.plone.shop',
+        'klarnacheckout',
     ],
     extras_require={
         'test': [
