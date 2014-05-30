@@ -58,21 +58,23 @@ class KlarnaPay(BrowserView):
         ordernumber = data['ordernumber']
         
         # Merchant ID
-        eid =   settings.klarna_eid
+        eid =  settings.klarna_eid
         
         # Shared Secret
-        shared_secret =  settings.klarna_secret
+        shared_secret = settings.klarna_secret
         
         #Add the cart items 
         cart = (
-        	{
-            'quantity': 1,
-            'reference': ordernumber,
-            'name': 'BMH',
-            'unit_price': amount,
-            'tax_rate': 2500
-        	} 
+            {
+                'quantity': 1,
+                'reference': '123456789',
+                'name': 'Klarna t-shirt',
+                'unit_price': 12300,
+                'discount_rate': 1000,
+                'tax_rate': 2500
+            }, 
         )
+
                 
         create_data = {}
         create_data["cart"] = {"items": []}
@@ -82,22 +84,28 @@ class KlarnaPay(BrowserView):
         
         #Configure the checkout order
         
+        import pdb; pdb.set_trace()
         create_data['purchase_country'] = 'NO'
         create_data['purchase_currency'] = currency
         create_data['locale'] = 'nb-no'
-
-        #create_data['billing_address'] = {
-        #    'given_name': 'Testperson-no',
-        #	'family_name' : 'Approved',
-        #	'street_address' : 'Sæffleberggate 56',
-        #	'postal_code' : '0563'
-        #}
+        
+        create_data['shipping_address'] = { 
+        'email' : 'espen@medialog.no',
+        'given_name' : 'Espen',
+        'family_name' : 'Moe',
+        'postal_code' : '5067',
+        'phone' : '55555555',
+        }
+        #create_data['billing_address'] = { 'phone' : '55555555', }
         
         create_data['merchant'] = {
             'id': eid,
-            'terms_uri': 'http://www.bmh.no/nettbutikk/agb',
-            'checkout_uri': 'http://bmh.no/checkout',
-            'confirmation_uri': ('http://bmh.no/thank-you')
+            'terms_uri': 'http://example.com/terms.html',
+            'checkout_uri': 'http://example.com/checkout',
+            'confirmation_uri': ('http://example.com/thank-you' +
+                                 '?sid=123&klarna_order={checkout.order.uri}'),
+            'push_uri': ('http://example.com/push' +
+                         '?sid=123&klarna_order={checkout.order.uri}')
         }
         
         
