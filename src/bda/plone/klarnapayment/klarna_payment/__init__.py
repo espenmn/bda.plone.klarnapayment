@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import klarnacheckout
 
 import logging
@@ -46,78 +48,80 @@ class KlarnaPay(BrowserView):
         registry = getUtility(IRegistry)
         settings = registry.forInterface(IKlarnaPaymentSettings)
         
-        pdata = IPaymentData(self.context).data(uid)
+        data = IPaymentData(self.context).data(uid)
         
-        amount = pdata['amount']
-        currency = pdata['currency']
-        description = pdata['description']
-        ordernumber = pdata['ordernumber']
+        amount = data['amount']
+        currency = data['currency']
+        description = data['description']
+        ordernumber = data['ordernumber']
         
-        
-        
-        # Dictionary containing the cart items
-        cart = (
-        {
-        'quantity': 1,
-        'reference': '123456789',
-        'name': 'Klarna t-shirt',
-        'unit_price': 12300,
-        'discount_rate': 1000,
-        'tax_rate': 2500
-        }, {
-        'quantity': 1,
-        'type': 'shipping_fee',
-        'reference': 'SHIPPING',
-        'name': 'Shipping Fee',
-        'unit_price': 4900,
-        'tax_rate': 2500
-        }
-        )
-                
         # Merchant ID
-        eid = '2290'
-        settings.klarna_eid
+        eid =  settings.klarna_eid
         
         # Shared Secret
-        shared_secret = 'qzjaNjloMvifB6z'
-        #settings.klarna_secret
+        shared_secret =  settings.klarna_secret      
         
+        
+        #Add the cart items 
+        cart = (
+        	{
+            'quantity': 1,
+            'reference': '123456789',
+            'name': 'Klarna t-shirt',
+            'unit_price': 12300,
+            'tax_rate': 2500
+        	} 
+        )
+                
+        create_data = {}
+        create_data["cart"] = {"items": []}
+
+        for item in cart:
+            create_data["cart"]["items"].append(item)
+        
+        #Configure the checkout order 
+        
+        create_data['billing_address.given_name'] = 'Testperson-no'    
+        create_data['billing_address.family_name'] = 'Approved'    
+        create_data['billing_address.street_address'] = 'Sæffleberggate 56'    
+        create_data['billing_address.postal_code'] = '0563'    
+        create_data['email'] = 'youremail@email.com'    
+        create_data['phone'] = '40123456'   
+       
+        create_data['purchase_country'] = 'NO'
+        create_data['purchase_currency'] = 'NOK'   
+        create_data['locale'] = 'nb-no'
+        create_data['merchant'] = {
+            'id': eid,
+            'terms_uri': 'http://www.bmh.no/nettbutikk/agb',
+            'checkout_uri': 'http://bmh.no/checkout',
+            'confirmation_uri': ('http://bmh.no/thank-you')
+        }
+        
+        
+        
+        
+        # Create a checkout order 
         
         klarnacheckout.Order.base_uri = \
             'https://checkout.testdrive.klarna.com/checkout/orders'
         klarnacheckout.Order.content_type = \
             'application/vnd.klarna.checkout.aggregated-order-v2+json'
-        
-        connector = klarnacheckout.create_connector(shared_secret)
-        
-        order = None
-        
-        merchant = {
-            'id': eid,
-            'terms_uri': 'http://example.com/terms.html',
-            'checkout_uri': 'http://example.com/checkout',
-            'confirmation_uri': ('http://example.com/thank-you' +
-                                 '?sid=123&klarna_order={checkout.order.uri}'),
-        # You can not receive push notification on
-        # a non publicly available uri
-        #'push_uri': ('http://example.com/push' +
-        #             '?sid=123&klarna_order={checkout.order.uri}')
-        }
-        
-        import pdb; pdb.set_trace()
-        
-        data = {
-                'purchase_country': 'SE',
-                'purchase_currency': 'SEK',
-                'locale': 'sv-se',
-        'merchant': merchant
-        }
-        
-        data["cart"] = {"items": []}
-        
-        for item in cart:
-            data["cart"]["items"].append(item)
-        
-        order = klarnacheckout.Order(connector)
-        order.create(data)
 
+        connector = klarnacheckout.create_connector(shared_secret)
+
+        order = klarnacheckout.Order(connector)
+        order.create(create_data)
+        
+        
+        
+        
+        # Render the checkout snippet 
+        
+        order.fetch()
+
+        # Store location of checkout session
+        #session["klarna_checkout"] = order.location
+
+        # Display checkout
+        return "<div>%s</div>" % (order["gui"]["snippet"])
