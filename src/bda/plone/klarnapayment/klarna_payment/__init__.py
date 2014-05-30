@@ -50,25 +50,26 @@ class KlarnaPay(BrowserView):
         
         data = IPaymentData(self.context).data(uid)
         
+        # OrderData(self.context, self.uid)
+        
         amount = data['amount']
         currency = data['currency']
         description = data['description']
         ordernumber = data['ordernumber']
         
         # Merchant ID
-        eid =  settings.klarna_eid
+        eid =   settings.klarna_eid
         
         # Shared Secret
-        shared_secret =  settings.klarna_secret      
-        
+        shared_secret =  settings.klarna_secret
         
         #Add the cart items 
         cart = (
         	{
             'quantity': 1,
-            'reference': '123456789',
-            'name': 'Klarna t-shirt',
-            'unit_price': 12300,
+            'reference': ordernumber,
+            'name': 'BMH',
+            'unit_price': amount,
             'tax_rate': 2500
         	} 
         )
@@ -79,18 +80,18 @@ class KlarnaPay(BrowserView):
         for item in cart:
             create_data["cart"]["items"].append(item)
         
-        #Configure the checkout order 
+        #Configure the checkout order
         
         create_data['purchase_country'] = 'NO'
-        create_data['purchase_currency'] = 'NOK'   
+        create_data['purchase_currency'] = currency
         create_data['locale'] = 'nb-no'
 
-        create_data['billing_address'] = {
-            'given_name': 'Testperson-no',
-        	'family_name' : 'Approved',
-        	'street_address'] : 'Sæffleberggate 56',
-        	'postal_code' : '0563'
-        }
+        #create_data['billing_address'] = {
+        #    'given_name': 'Testperson-no',
+        #	'family_name' : 'Approved',
+        #	'street_address' : 'Sæffleberggate 56',
+        #	'postal_code' : '0563'
+        #}
         
         create_data['merchant'] = {
             'id': eid,
