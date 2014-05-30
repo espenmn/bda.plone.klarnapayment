@@ -81,24 +81,23 @@ class KlarnaPay(BrowserView):
         
         #Configure the checkout order 
         
-        create_data['billing_address.given_name'] = 'Testperson-no'    
-        create_data['billing_address.family_name'] = 'Approved'    
-        create_data['billing_address.street_address'] = 'Sæffleberggate 56'    
-        create_data['billing_address.postal_code'] = '0563'    
-        create_data['email'] = 'youremail@email.com'    
-        create_data['phone'] = '40123456'   
-       
         create_data['purchase_country'] = 'NO'
         create_data['purchase_currency'] = 'NOK'   
         create_data['locale'] = 'nb-no'
+
+        create_data['billing_address'] = {
+            'given_name': 'Testperson-no',
+        	'family_name' : 'Approved',
+        	'street_address'] : 'Sæffleberggate 56',
+        	'postal_code' : '0563'
+        }
+        
         create_data['merchant'] = {
             'id': eid,
             'terms_uri': 'http://www.bmh.no/nettbutikk/agb',
             'checkout_uri': 'http://bmh.no/checkout',
             'confirmation_uri': ('http://bmh.no/thank-you')
         }
-        
-        
         
         
         # Create a checkout order 
