@@ -4,6 +4,10 @@
   <records interface="bda.plone.klarnapayment.IKlarnaPaymentSettings">
     <value key="klarna_eid" purge="false">2290</value>
     <value key="klarna_secret" purge="false">qzjaNjloMvifB6z</value>
+    <value key="klarna_terms_uri" purge="false">mysite.com/terms</value>
+    <value key="klarna_checkout_uri" purge="false">mysite.com/checkout</value>
+    <value key="klarna_confirmation_uri" purge="false">mysite.com/confirm</value>
+    <value key="klarna_push_uri" purge="false">mysite.com/push</value>
   </records>
 
 </registry>

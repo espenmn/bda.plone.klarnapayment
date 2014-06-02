@@ -17,13 +17,34 @@ class IKlarnaPaymentSettings(model.Schema):
         fields=[
         'klarna_eid',
         'klarna_secret',
+        'klarna_terms_uri',
+        'klarna_checkout_uri',
+        'klarna_confirmation_uri',
+        'klarna_push_uri',
         ],
     )
                    
-    klarna_eid = schema.ASCIILine(title=_(u'eid', default=u'Eid'),
+    klarna_eid = schema.ASCIILine(title=_(u'klarn_eid', default=u'Eid'),
                  required=True
     )
 
-    klarna_secret = schema.ASCIILine(title=_(u'secret', default=u'Shared Secret'),
+    klarna_secret = schema.ASCIILine(title=_(u'klarna_secret', default=u'Shared Secret'),
                required=True
     )
+    
+    klarna_terms_uri = schema.ASCIILine(title=_(u'klarna_terms_uri', default=u'Klarna Terms URI'),
+               required=True
+    )
+    
+    klarna_checkout_uri = schema.ASCIILine(title=_(u'klarna_checkout_uri', default=u'Checkout URI'),
+               required=True
+    )
+    
+    klarna_confirmation_uri = schema.ASCIILine(title=_(u'klarna_confirmation_uri', default=u'Confirmation URI'),
+               required=True
+    )
+    
+    klarna_push_uri = schema.ASCIILine(title=_(u'klarna_push_uri', default=u'Push URI'),
+               required=True
+    )
+          

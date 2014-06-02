@@ -65,6 +65,13 @@ class KlarnaPay(BrowserView):
         # Shared Secret
         shared_secret = settings.klarna_secret
         
+        # URLS
+        terms_uri = settings.klarna_terms_uri
+        checkout_uri = settings.klarna_checkout_uri
+        confirmation_uri = settings.klarna_confirmation_uri
+        push_uri = settings.klarna_push_uri
+                    
+
         #Add the cart items 
         cart = (
             {
@@ -92,21 +99,20 @@ class KlarnaPay(BrowserView):
         create_data['locale'] = 'nb-no'
         
         create_data['shipping_address'] = { 
-        'email' : 'espen@medialog.no',
-        'given_name' : 'Espen',
-        'family_name' : 'Moe',
-        'postal_code' : '5067',
-        'phone' : '55555555',
+            'email' : 'espen@medialog.no',
+            'given_name' : 'Espen',
+            'family_name' : 'Moe',
+            'postal_code' : '5067',
+            'phone' : '55555555',
         }
         #create_data['billing_address'] = { 'phone' : '55555555', }
         
         create_data['merchant'] = {
             'id': eid,
-            'terms_uri': 'http://example.com/terms.html',
-            'checkout_uri': 'http://example.com/checkout',
-            'confirmation_uri': ('http://example.com/thank-you' +
-                                 '?sid=123&klarna_order={checkout.order.uri}'),
-            'push_uri': ('http://example.com/push' +
+            'terms_uri': terms_uri,
+            'checkout_uri': checkout_uri,
+            'confirmation_uri': confirmation_uri,
+            'push_uri': (push_uri +
                          '?sid=123&klarna_order={checkout.order.uri}')
         }
         
