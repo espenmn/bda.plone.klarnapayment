@@ -57,6 +57,8 @@ class KlarnaPay(BrowserView):
         description = data['description']
         ordernumber = data['ordernumber']
         
+        import pdb; pdb.set_trace()
+        
         # Merchant ID
         eid =  settings.klarna_eid
         
