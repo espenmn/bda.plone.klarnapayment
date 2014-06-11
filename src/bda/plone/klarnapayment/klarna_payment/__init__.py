@@ -50,6 +50,8 @@ class KlarnaPay(BrowserView):
         
         data = IPaymentData(self.context).data(uid)
         
+        ## buyabledata = BuyableData.item_ordered(self)
+        
         # OrderData(self.context, self.uid)
         
         amount = data['amount']
@@ -58,6 +60,9 @@ class KlarnaPay(BrowserView):
         ordernumber = data['ordernumber']
         
         import pdb; pdb.set_trace()
+        something = get_order(self.context, uid).items
+        order = get_order(self.context, uid)
+        order.attrs['shipping']
         
         # Merchant ID
         eid =  settings.klarna_eid
