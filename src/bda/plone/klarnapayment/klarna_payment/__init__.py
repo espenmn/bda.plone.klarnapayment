@@ -37,9 +37,7 @@ class Klarna(Payment):
 
 class KlarnaPay(BrowserView):
     """
-    Assembles an url to dibs.
-    Need to check how to use (in lin 109)
-    make_query() 
+    uses klarna checkout
     """
 
     def __call__(self, **kw):
