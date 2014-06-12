@@ -56,7 +56,7 @@ class KlarnaPay(BrowserView):
         #description = data['description']
         #ordernumber = data['ordernumber']
         
-        import pdb; pdb.set_trace()
+        #import pdb; pdb.set_trace()
         order_data = OrderData(self.context, uid)
         
         currency = data['currency']
