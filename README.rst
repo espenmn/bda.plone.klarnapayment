@@ -13,6 +13,17 @@ Create translations
     $ ./i18n.sh
 
 
+Author
+============
+Espen-Moe-Nilssen
+ 
+
 Contributors
 ============
- 
+
+To Do
+============
+
+Add shipping
+
+Add discounts
