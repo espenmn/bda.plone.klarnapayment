@@ -70,7 +70,8 @@ class KlarnaPay(BrowserView):
         terms_uri        =  settings.klarna_terms_uri
         checkout_uri     =  settings.klarna_checkout_uri
         confirmation_uri =  settings.klarna_confirmation_uri
-        push_uri         = 'http://example.com/push?sid=123&klarna_order={checkout.order.uri}'
+        push_uri         = ('http://example.com/push' +
+                                              '?sid=123&klarna_order={checkout.order.uri}')
         
         #Add the cart items
         cart = list()
@@ -91,7 +92,7 @@ class KlarnaPay(BrowserView):
             create_data["cart"]["items"].append(item)
         
         #Configure the checkout order
-        import pdb; pdb.set_trace()
+        #import pdb; pdb.set_trace()
         create_data['purchase_country'] = 'NO'
         create_data['purchase_currency'] = currency
         create_data['locale'] = 'nb-no'
