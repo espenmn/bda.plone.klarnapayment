@@ -70,8 +70,7 @@ class KlarnaPay(BrowserView):
         terms_uri        =  settings.klarna_terms_uri
         checkout_uri     =  settings.klarna_checkout_uri
         confirmation_uri =  settings.klarna_confirmation_uri
-        push_uri         = ('http://example.com/push' +
-                                              '?sid=123&klarna_order={checkout.order.uri}')
+        push_uri         =  settings.klarna_push_uri
         
         #Add the cart items
         cart = list()
@@ -134,3 +133,11 @@ class KlarnaPay(BrowserView):
         
         # Display checkout
         return "<div>%s</div>" % (order["gui"]["snippet"])
+
+
+class KlarnaPaid(BrowserView):
+    """
+        for klarnas PUSH
+    """
+
+    self.request.response.setStatus(201)

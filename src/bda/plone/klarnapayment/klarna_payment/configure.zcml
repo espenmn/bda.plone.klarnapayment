@@ -10,5 +10,13 @@
     permission="zope2.View"
   />
   
+  <browser:page
+    for="*"
+    name="klarna_paid"
+    class=".KlarnaPaid"
+    permission="zope2.View"
+  />
+  
+
 
 </configure>
