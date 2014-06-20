@@ -140,4 +140,5 @@ class KlarnaPaid(BrowserView):
         for klarnas PUSH
     """
 
-    self.request.response.setStatus(201)
+    def __call__(self):
+        self.request.response.setStatus(201)
