@@ -98,10 +98,7 @@ class KlarnaPay(BrowserView):
         
         create_data['shipping_address'] = {
             'email'        : order['personal_data.email'],
-            'given_name'   : order['personal_data.firstname'],
-            'family_name'  : order['personal_data.lastname'],
             'postal_code'  : order['billing_address.zip'],
-            'phone'        : order['personal_data.phone'],
         }
         
         create_data['merchant'] = {
