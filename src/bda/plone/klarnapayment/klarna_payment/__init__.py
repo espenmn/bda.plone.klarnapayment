@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import klarnacheckout
-
 import logging
 from Acquisition import aq_inner
 from zope.component import getMultiAdapter
